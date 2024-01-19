@@ -1,6 +1,6 @@
 
-# openIPC-GK7205V300
-## openIPC GK7205V300 install and setup
+# OpenIPC-GK7205V300
+## OpenIPC GK7205V300 install and setup
 
 ==**Note:** this guide is made using Linux Mint 21.2 . If you are using another distribution, probably you have to change the commands accordingly and the output may be different.==
 
