@@ -306,3 +306,52 @@ After the first boot with the new firmware you need to clean the overlay partiti
 firstboot
 ```
 
+### Flash bootloader with CH341A programmer
+
+Update system and isntall `flashrom`. This command is for Linux Mint/Ubuntu/Debian for other distributions search the internet how to install `flashrom`.
+
+```
+sudo apt update
+sudo apt install flashrom 
+```
+or install from source
+First install dependencies:
+```
+sudo apt-get install git -y \
+    build-essential -y \
+    libpci-dev -y \
+    libusb-dev -y \
+    libusb-1.0-0-dev -y \
+    libftdi-dev -y
+```
+clone the repository
+```
+git clone https://review.coreboot.org/flashrom.git
+```
+Enter to the downloaded directory and build flashrom.
+```
+cd flashrom
+make
+```
+And install
+```
+make install
+```
+In my case I had permission denied error so did it with `sudo`
+```
+sodo make install
+```
+
+1. Connect the clip to the BIOS chip, nothing should be powered
+2. Connect the clip or adapters to the CH341a programmer
+3. Connect the CH341a programmer to USB
+4. Read the data from the chip and backup (may backup twice and compare the check sums of the two backups)
+```
+sudo flashrom --programmer ch341a_spi -r backup1.bin
+```
+5. Write the new file to the chip
+```
+sudo flashrom --programmer ch341a_spi -w u-boot-gk7205v300-universal.bin
+```
+
+
